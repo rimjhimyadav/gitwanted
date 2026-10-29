@@ -20,31 +20,6 @@ Your year on GitHub as a GTA-inspired crime story. Type any username and get a w
 - **Trophies** that pop up during the story, like console achievements
 - Fun error screens: **WASTED** when a user doesn't exist, **BUSTED** with a countdown when the GitHub rate limit is hit
 
-| Mission passed | Wanted level | Weapon wheel |
-| --- | --- | --- |
-| ![Mission passed](screenshots/mission.jpg) | ![Wanted level](screenshots/wanted.jpg) | ![Weapon wheel](screenshots/weapon.jpg) |
-
-| Intro | Criminal record | Most Wanted |
-| --- | --- | --- |
-| ![Intro](screenshots/intro.jpg) | ![Criminal record](screenshots/record.jpg) | ![Most Wanted poster](screenshots/poster.jpg) |
-
-![Profile feed](screenshots/profile.jpg)
-
-![Home](screenshots/home.jpg)
-
-## How it works
-
-1. Four requests go out **in parallel**: the GitHub profile, repos and commit search, plus the [github-contributions-api](https://github.com/grubersjoe/github-contributions-api) for the daily contribution graph (GitHub only gives that graph through GraphQL, which needs a token).
-2. All stats are calculated once in [`src/lib/stats.ts`](src/lib/stats.ts) into a single `Wrapped` object. Slides and posts only read from it.
-3. No token is used, since anything in frontend code is public. To stay within GitHub's limit of 60 requests an hour, every response is cached in `sessionStorage`. When the limit is hit, the app reads the `x-ratelimit-reset` header and shows a countdown.
-
-Some details I enjoyed solving:
-
-- **Commit hours** are read straight from the timestamp text, so they stay on the committer's own clock instead of moving to the viewer's timezone.
-- **The calendar colors** scale against a busy day (the 90th percentile), not the busiest one, so one huge day doesn't make the rest of the year look empty.
-- **The story progress bar** is just a CSS animation. `onAnimationEnd` moves to the next slide and pausing sets `animation-play-state`, so there's no timer to keep in sync.
-- **The download** loads `html-to-image` only when you click the button, so it's not in the main bundle.
-
 ## Built with
 
 - React 19 + TypeScript + Vite
