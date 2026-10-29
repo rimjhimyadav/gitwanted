@@ -34,7 +34,7 @@ export default function Home() {
       </motion.div>
 
       <main className="relative mx-auto flex w-full max-w-5xl flex-1 flex-col justify-end px-5 pt-16 pb-10 sm:px-8 lg:justify-center">
-        <p className="text-xs font-semibold tracking-[0.35em] text-cream/85 uppercase">A GitHub crime story</p>
+        <p className="text-over-photo text-xs font-semibold tracking-[0.35em] text-cream uppercase">A GitHub crime story</p>
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -45,7 +45,7 @@ export default function Home() {
           <br />
           Wanted
         </motion.h1>
-        <p className="mt-5 max-w-md text-base text-cream/90 sm:text-lg">
+        <p className="text-over-photo mt-5 max-w-md text-base font-medium text-cream sm:text-lg">
           Your year on GitHub as a crime story. Wanted level, weapon of choice, criminal record and a Most Wanted poster for any username.
         </p>
 
