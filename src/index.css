@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@theme {
+  --font-logo: "Archivo Black", "Arial Black", sans-serif;
+  --font-display: "Anton", Impact, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --font-sans: "Inter Variable", system-ui, sans-serif;
+
+  --color-night: #140b22;
+  --color-dusk: #2b1340;
+  --color-cream: #fff4e3;
+  --color-pink: #ff3d8b;
+  --color-orange: #ff8a3d;
+  --color-gold: #ffc93d;
+  --color-teal: #25e2cf;
+  --color-cash: #57e389;
+  --color-siren-red: #ff2d4a;
+  --color-siren-blue: #2f6bff;
+}
+
+body {
+  background-color: var(--color-night);
+  color: var(--color-cream);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-pink);
+  color: var(--color-cream);
+}
+
+.sunset {
+  background: linear-gradient(180deg, #2b1340 0%, #5a1a55 30%, #b8296b 52%, #ff5a7a 68%, #ff8a3d 84%, #ffc93d 100%);
+}
+
+/* paint-order keeps the outline from eating into the letters */
+.game-title {
+  -webkit-text-stroke: 0.09em var(--color-night);
+  paint-order: stroke fill;
+  text-shadow: 0.05em 0.06em 0 var(--color-night);
+}
+
+/* drop-shadow filter, because text-shadow shows through transparent text */
+.sunset-text {
+  background: linear-gradient(180deg, #8fdcff 0%, #b98cff 28%, #ff5fae 55%, #ff9a4d 80%, #ffd66b 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0.04em 0.05em 0 rgb(14 8 24 / 0.9));
+}
+
+.glass {
+  background-color: rgb(20 11 34 / 0.6);
+  backdrop-filter: blur(18px) saturate(150%);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.12),
+    inset 0 0 0 1px rgb(255 255 255 / 0.08);
+}
+
+.halftone {
+  background-image: radial-gradient(currentColor 26%, transparent 28%);
+  background-size: 8px 8px;
+}
+
+/* story progress bar, the player moves on when it ends */
+@keyframes fill {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes siren {
+  0%,
+  45% {
+    opacity: 1;
+  }
+  50%,
+  95% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-loop {
+    animation: none !important;
+  }
+}
